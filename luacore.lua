@@ -275,20 +275,7 @@ ni("TextLabel", {
     ZIndex                 = 7,
     Parent                 = Header,
 })
-if not isMobile then
-    ni("TextLabel", {
-        Size                   = UDim2.new(0, 150, 0, HEADER_H),
-        Position               = UDim2.new(1, -162, 0, 0),
-        BackgroundTransparency = 1,
-        Text                   = "[Ctrl] toggle",
-        TextColor3             = C.w25,
-        Font                   = Enum.Font.Gotham,
-        TextSize               = 11,
-        TextXAlignment         = Enum.TextXAlignment.Right,
-        ZIndex                 = 7,
-        Parent                 = Header,
-    })
-end
+
 
 local Body = ni("Frame", {
     Size                   = UDim2.new(1, 0, 1, -HEADER_H),
@@ -1368,10 +1355,23 @@ ni("Frame", {
     Parent                 = cfgTabBtn,
 })
 ni("UICorner", { CornerRadius = UDim.new(1, 0), Parent = cfgTabBtn:FindFirstChild("Accent") })
+if not isMobile then
+    ni("ImageLabel", {
+        Name                   = "TabIcon",
+        Size                   = UDim2.new(0, 16, 0, 16),
+        Position               = UDim2.new(0, 10, 0.5, -8),
+        BackgroundTransparency = 1,
+        Image                  = "rbxassetid://7734053870",
+        ImageColor3            = C.w50,
+        ZIndex                 = 8,
+        Parent                 = cfgTabBtn,
+    })
+end
+local lblX = isMobile and 7 or 32
 ni("TextLabel", {
     Name                   = "TabLabel",
-    Size                   = UDim2.new(1, -10, 1, 0),
-    Position               = UDim2.new(0, 7, 0, 0),
+    Size                   = UDim2.new(1, -lblX - 3, 1, 0),
+    Position               = UDim2.new(0, lblX, 0, 0),
     BackgroundTransparency = 1,
     Text                   = "Config",
     TextColor3             = C.w75,
