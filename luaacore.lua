@@ -392,17 +392,17 @@ local function switchTab(name)
     ScrollFrame.CanvasPosition = Vector2.new(0, 0)
 
     if prevCanvas and prevCanvas.Visible then
-        tw(prevCanvas, EASE, { GroupTransparency = 1 })
+        prevCanvas.Visible = false
         task.delay(0.20, function()
             prevCanvas.Visible           = false
             prevCanvas.GroupTransparency = 0
         end)
     end
 
-    nextCanvas.GroupTransparency = 1
-    nextCanvas.Visible           = true
+    nextCanvas.Visible = true
+    
     task.delay(0.05, function()
-        tw(nextCanvas, MED, { GroupTransparency = 0 })
+       
         task.delay(0.26, function()
             _switchBusy = false
             if _pendingSwitch then
@@ -526,14 +526,13 @@ function Window:CreateTab(name, icon)
     end)
     btn.MouseButton1Click:Connect(function() switchTab(name) end)
 
-    local tabCanvas = Instance.new("CanvasGroup")
-    tabCanvas.Size                   = UDim2.new(1, 0, 0, 0)
-    tabCanvas.BackgroundTransparency = 1
-    tabCanvas.GroupTransparency      = 1
-    tabCanvas.BorderSizePixel        = 0
-    tabCanvas.ZIndex                 = 7
-    tabCanvas.Visible                = false
-    tabCanvas.Parent                 = ContentInner
+    local tabCanvas = Instance.new("Frame")
+tabCanvas.Size                   = UDim2.new(1, 0, 0, 0)
+tabCanvas.BackgroundTransparency = 1
+tabCanvas.BorderSizePixel        = 0
+tabCanvas.ZIndex                 = 7
+tabCanvas.Visible                = false
+tabCanvas.Parent                 = ContentInner
 
     local tabFrame = ni("Frame", {
         Size                   = UDim2.new(1, 0, 1, 0),
